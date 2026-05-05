@@ -155,6 +155,8 @@
             display: none;
             padding: 30px;
             animation: fadeIn 0.4s ease;
+            /* Essential for floating images to be contained correctly */
+            overflow: hidden; 
         }
 
         .slide.active {
@@ -166,12 +168,17 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .slide img {
-            display: block;
-            max-width: 100%;
+        /* Essential formatting for word-wrap */
+        .details-content, .profile-wrapper {
+            overflow: hidden;
+        }
+
+        /* Alternating floating image behavior */
+        .profile-img-wrap {
+            max-width: 320px;
+            width: 40%;
             height: auto;
             border-radius: 8px;
-            margin: 0 0 25px 0;
             border: 1px solid var(--border-color);
         }
 
@@ -185,11 +192,20 @@
             grid-template-columns: 1fr 1fr;
             gap: 20px;
             margin-top: 20px;
+            /* Clear floats before the grid */
+            clear: both;
         }
 
         @media (max-width: 600px) {
             .profile-grid { grid-template-columns: 1fr; }
             #current-student-name { font-size: 14pt; }
+            /* On mobile, images don't float, they stack */
+            .profile-img-wrap {
+                width: 100%;
+                float: none !important;
+                margin: 0 0 20px 0 !important;
+                display: block;
+            }
         }
     </style>
 </head>
@@ -199,7 +215,7 @@
 
     <!-- Overview Section -->
     <h2>
-        <img src="21-Resources.png" alt="Classroom Icon" width="60"> 
+        <img src="https://utk.instructure.com/courses/254839/files/30730022/preview" alt="Classroom Icon" width="60"> 
         Classroom Demographic Description
     </h2>
     <hr class="hr-main">
@@ -248,7 +264,7 @@
 
     <!-- Gallery Section Header -->
     <h2 style="margin-top: 50px;">
-        <img src="24-Support%20and%20Resources.png" alt="" width="60" height="60" /> 
+        <img src="https://utk.instructure.com/courses/254839/files/30730023/preview" alt="" width="60" height="60" /> 
         Student Profiles
     </h2>
     <hr class="hr-main">
@@ -265,117 +281,127 @@
             </div>
         </div>
 
-        <!-- Slide 1: John -->
+        <!-- Slide 1: John (FLOAT RIGHT) -->
         <div class="slide active">
-            <img src="John Student Profile.png" alt="Images of John" />
-            <p>John demonstrates advanced early literacy behaviors for his age. Progress monitoring data reveal that John is able to:</p>
-            <ul>
-                <li>recognize many uppercase and lowercase letters,</li>
-                <li>can identify some letter-sound correspondences,</li>
-                <li>enjoy retelling stories,</li> 
-                <li>often volunteers during read-alouds,</li>
-                <li>sustain attention during literacy activities for longer periods.</li>
-            </ul>
-            <p><strong>Instructional Benefits:</strong> More complex questioning, expanded vocabulary, and peer leadership roles.</p>
-        </div>
-
-        <!-- Slide 2: Opal -->
-        <div class="slide">
-            <img src="Opal Student Profile.png" alt="Images of Opal" />
-            <p>Assessment data reveal that Opal needs added support with her oral language development and literacy-related vocabulary. Data reveal that Opal:</p>
-            <ul>
-                <li>has difficulty answering open-ended questions,</li>
-                <li>needs extra time to process directions,</li>
-                <li>uses shorter phrases or simple sentences.</li>
-                <li>may understand more than she can express,</li>
-                <li>and benefits from repeated exposure to vocabulary and concepts.</li>
-            </ul>
-            <p>Based on this data, Opal’s teachers decide she can benefit from:</p>
-            <ul>
-                <li>visual supports,</li>
-                <li>modeling and repetition,</li>
-                <li>sentence starters,</li>
-                <li>explicit vocabulary instruction,</li>
-                <li>partner talk,</li>
-                <li>and opportunities to respond nonverbally as well as verbally.</li>
-            </ul>
-        </div>
-
-        <!-- Slide 3: Mary -->
-        <div class="slide">
-            <img src="Mary Student Profile.png" alt="Images of Mary" />
-            <p>Mary is a <strong>dual language learner</strong>. Mary is socially engaged and interested in stories and songs. Progress monitoring data reveal that Mary:</p>
-            <ul>
-                <li>needs support understanding unfamiliar English vocabulary,</li>
-                <li>relies on gestures, peer modeling, and context clues,</li>
-                <li>participates more confidently when visuals are available.</li>
-                <li>and shows stronger comprehension than expressive English language output.</li>
-            </ul>
-            <p>Based on this data, Mary’s teachers decide she can benefit from:</p>
-            <ul>
-                <li>picture cues,</li>
-                <li>gestures,</li>
-                <li>repeated read-alouds,</li>
-                <li>home-language connections when possible,</li>
-                <li>real objects/props,</li>
-                <li>peer pairing,</li>
-                <li>and opportunities to participate through movement, pointing, acting out, or selecting visuals.</li>
-            </ul>
-        </div>
-
-        <!-- Slide 4: Tyler -->
-        <div class="slide">
-            <img src="Tyler Student Profile.png" alt="Images of Tyler" />
-            <p>Tyler requires additional support to remain engaged during group literacy activities. Progress monitoring data reveal that Tyler:</p>
-            <ul>
-                <li>has difficulty sitting for long periods,</li>
-                <li>becomes distracted by noise or movement,</li>
-                <li>needs reminders to attend,</li>
-                <li>struggles with turn-taking or waiting.</li>
-            </ul>
-            <p>Based on this data, Tyler’s teachers decide she can benefit from:</p>
-            <ul>
-                <li>shorter instructional segments,</li>
-                <li>movement opportunities.</li>
-            </ul>
-        </div>
-
-        <!-- Slide 5: Mateo -->
-        <div class="slide">
-            <img src="Mateo Student Profile.png" alt="Images of Mateo" />
-            <p><strong>Name:</strong> Mateo | <strong>Age:</strong> 4 years, 8 months | <strong>Diagnosis:</strong> ASD with speech-language impairment.</p>
-            <p><strong>Present Level Summary:</strong> Mateo demonstrates interest in books, songs, and picture-based activities. He is able to attend to a preferred literacy task for several minutes when visuals and adult support are provided. He identifies familiar pictures and can answer simple questions by pointing or selecting from choices. Mateo’s expressive communication challenges and need for predictable structure affect his ability to participate independently in whole-group literacy activities. He benefits from individualized support including picture choices, visual schedules, repeated language, simplified directions, modeled responses, and alternative ways to demonstrate understanding.</p>
-            
-            <div class="profile-grid">
-                <div>
-                    <strong>Strengths</strong>
-                    <ul>
-                        <li>enjoys books and songs</li>
-                        <li>strong visual learner</li>
-                        <li>interested in animals and vehicles</li>
-                        <li>matches pictures accurately</li>
-                        <li>follows predictable routines</li>
-                    </ul>
-                </div>
-                <div>
-                    <strong>Considerations</strong>
-                    <ul>
-                        <li>limited expressive language</li>
-                        <li>difficulty answering open-ended questions</li>
-                        <li>needs visual supports and simplified directions</li>
-                        <li>benefits from prompting and structured participation</li>
-                        <li>may need sensory and attention supports during group time</li>
-                    </ul>
-                </div>
+            <div class="profile-wrapper">
+                <img src="John Student Profile.png" alt="Images of John" class="profile-img-wrap" style="float: right; margin-left: 25px; margin-bottom: 20px;" />
+                <p>John demonstrates advanced early literacy behaviors for his age. Progress monitoring data reveal that John is able to:</p>
+                <ul>
+                    <li>recognize many uppercase and lowercase letters,</li>
+                    <li>can identify some letter-sound correspondences,</li>
+                    <li>enjoy retelling stories,</li> 
+                    <li>often volunteers during read-alouds,</li>
+                    <li>sustain attention during literacy activities for longer periods.</li>
+                </ul>
+                <p><strong>Instructional Benefits:</strong> More complex questioning, expanded vocabulary, and peer leadership roles.</p>
             </div>
+        </div>
 
-            <p style="margin-top:20px;"><strong>Functional IEP Goals:</strong></p>
-            <ul>
-                <li>Use verbal response, picture symbol, or communication board to answer literacy-related questions (4/5 opportunities).</li>
-                <li>Identify key story elements with picture supports in 4/5 opportunities (4/5 opportunities).</li>
-                <li>Use 2–4 word phrases during literacy activities (80% of opportunities).</li>
-                <li>Remain engaged in literacy activities for 8 minutes (max 2 adult redirections).</li>
-            </ul>
+        <!-- Slide 2: Opal (FLOAT LEFT) -->
+        <div class="slide">
+            <div class="profile-wrapper">
+                <img src="Opal Student Profile.png" alt="Images of Opal" class="profile-img-wrap" style="float: left; margin-right: 25px; margin-bottom: 20px;" />
+                <p>Assessment data reveal that Opal needs added support with her oral language development and literacy-related vocabulary. Data reveal that Opal:</p>
+                <ul>
+                    <li>has difficulty answering open-ended questions,</li>
+                    <li>needs extra time to process directions,</li>
+                    <li>uses shorter phrases or simple sentences.</li>
+                    <li>may understand more than she can express,</li>
+                    <li>and benefits from repeated exposure to vocabulary and concepts.</li>
+                </ul>
+                <p>Based on this data, Opal’s teachers decide she can benefit from:</p>
+                <ul>
+                    <li>visual supports,</li>
+                    <li>modeling and repetition,</li>
+                    <li>sentence starters,</li>
+                    <li>explicit vocabulary instruction,</li>
+                    <li>partner talk,</li>
+                    <li>and opportunities to respond nonverbally as well as verbally.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 3: Mary (FLOAT RIGHT) -->
+        <div class="slide">
+            <div class="profile-wrapper">
+                <img src="Mary Student Profile.png" alt="Images of Mary" class="profile-img-wrap" style="float: right; margin-left: 25px; margin-bottom: 20px;" />
+                <p>Mary is a <strong>dual language learner</strong>. Mary is socially engaged and interested in stories and songs. Progress monitoring data reveal that Mary:</p>
+                <ul>
+                    <li>needs support understanding unfamiliar English vocabulary,</li>
+                    <li>relies on gestures, peer modeling, and context clues,</li>
+                    <li>participates more confidently when visuals are available.</li>
+                    <li>and shows stronger comprehension than expressive English language output.</li>
+                </ul>
+                <p>Based on this data, Mary’s teachers decide she can benefit from:</p>
+                <ul>
+                    <li>picture cues,</li>
+                    <li>gestures,</li>
+                    <li>repeated read-alouds,</li>
+                    <li>home-language connections when possible,</li>
+                    <li>real objects/props,</li>
+                    <li>peer pairing,</li>
+                    <li>and opportunities to participate through movement, pointing, acting out, or selecting visuals.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 4: Tyler (FLOAT LEFT) -->
+        <div class="slide">
+            <div class="profile-wrapper">
+                <img src="Tyler Student Profile.png" alt="Images of Tyler" class="profile-img-wrap" style="float: left; margin-right: 25px; margin-bottom: 20px;" />
+                <p>Tyler requires additional support to remain engaged during group literacy activities. Progress monitoring data reveal that Tyler:</p>
+                <ul>
+                    <li>has difficulty sitting for long periods,</li>
+                    <li>becomes distracted by noise or movement,</li>
+                    <li>needs reminders to attend,</li>
+                    <li>struggles with turn-taking or waiting.</li>
+                </ul>
+                <p>Based on this data, Tyler’s teachers decide she can benefit from:</p>
+                <ul>
+                    <li>shorter instructional segments,</li>
+                    <li>movement opportunities.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 5: Mateo (FLOAT RIGHT + GRID) -->
+        <div class="slide">
+            <div class="profile-wrapper">
+                <img src="Mateo Student Profile.png" alt="Images of Mateo" class="profile-img-wrap" style="float: right; margin-left: 25px; margin-bottom: 20px;" />
+                <p><strong>Name:</strong> Mateo | <strong>Age:</strong> 4 years, 8 months | <strong>Diagnosis:</strong> ASD with speech-language impairment.</p>
+                <p><strong>Present Level Summary:</strong> Mateo demonstrates interest in books, songs, and picture-based activities. He is able to attend to a preferred literacy task for several minutes when visuals and adult support are provided. He identifies familiar pictures and can answer simple questions by pointing or selecting from choices. Mateo’s expressive communication challenges and need for predictable structure affect his ability to participate independently in whole-group literacy activities. He benefits from individualized support including picture choices, visual schedules, repeated language, simplified directions, modeled responses, and alternative ways to demonstrate understanding.</p>
+                
+                <div class="profile-grid">
+                    <div>
+                        <strong>Strengths</strong>
+                        <ul>
+                            <li>enjoys books and songs</li>
+                            <li>strong visual learner</li>
+                            <li>interested in animals and vehicles</li>
+                            <li>matches pictures accurately</li>
+                            <li>follows predictable routines</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Considerations</strong>
+                        <ul>
+                            <li>limited expressive language</li>
+                            <li>difficulty answering open-ended questions</li>
+                            <li>needs visual supports and simplified directions</li>
+                            <li>benefits from prompting and structured participation</li>
+                            <li>may need sensory and attention supports during group time</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p style="margin-top:20px; clear:both;"><strong>Functional IEP Goals:</strong></p>
+                <ul>
+                    <li>Use verbal response, picture symbol, or communication board to answer literacy-related questions (4/5 opportunities).</li>
+                    <li>Identify key story elements with picture supports in 4/5 opportunities (4/5 opportunities).</li>
+                    <li>Use 2–4 word phrases during literacy activities (80% of opportunities).</li>
+                    <li>Remain engaged in literacy activities for 8 minutes (max 2 adult redirections).</li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
