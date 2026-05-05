@@ -155,7 +155,6 @@
             display: none;
             padding: 30px;
             animation: fadeIn 0.4s ease;
-            /* Essential for floating images to be contained correctly */
             overflow: hidden; 
         }
 
@@ -168,18 +167,20 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Essential formatting for word-wrap */
-        .details-content, .profile-wrapper {
+        .profile-wrapper {
             overflow: hidden;
         }
 
-        /* Alternating floating image behavior */
+        /* All images aligned right */
         .profile-img-wrap {
             max-width: 320px;
             width: 40%;
             height: auto;
             border-radius: 8px;
             border: 1px solid var(--border-color);
+            float: right;
+            margin-left: 25px;
+            margin-bottom: 20px;
         }
 
         /* Formatting */
@@ -192,14 +193,12 @@
             grid-template-columns: 1fr 1fr;
             gap: 20px;
             margin-top: 20px;
-            /* Clear floats before the grid */
             clear: both;
         }
 
         @media (max-width: 600px) {
             .profile-grid { grid-template-columns: 1fr; }
             #current-student-name { font-size: 14pt; }
-            /* On mobile, images don't float, they stack */
             .profile-img-wrap {
                 width: 100%;
                 float: none !important;
@@ -281,10 +280,10 @@
             </div>
         </div>
 
-        <!-- Slide 1: John (FLOAT RIGHT) -->
+        <!-- Slide 1: John -->
         <div class="slide active">
             <div class="profile-wrapper">
-                <img src="John Student Profile.png" alt="Images of John" class="profile-img-wrap" style="float: right; margin-left: 25px; margin-bottom: 20px;" />
+                <img src="John.jpg" alt="Images of John" class="profile-img-wrap" />
                 <p>John demonstrates advanced early literacy behaviors for his age. Progress monitoring data reveal that John is able to:</p>
                 <ul>
                     <li>recognize many uppercase and lowercase letters,</li>
@@ -297,10 +296,10 @@
             </div>
         </div>
 
-        <!-- Slide 2: Opal (FLOAT LEFT) -->
+        <!-- Slide 2: Opal -->
         <div class="slide">
             <div class="profile-wrapper">
-                <img src="Opal Student Profile.png" alt="Images of Opal" class="profile-img-wrap" style="float: left; margin-right: 25px; margin-bottom: 20px;" />
+                <img src="Opal.jpg" alt="Images of Opal" class="profile-img-wrap" />
                 <p>Assessment data reveal that Opal needs added support with her oral language development and literacy-related vocabulary. Data reveal that Opal:</p>
                 <ul>
                     <li>has difficulty answering open-ended questions,</li>
@@ -321,10 +320,10 @@
             </div>
         </div>
 
-        <!-- Slide 3: Mary (FLOAT RIGHT) -->
+        <!-- Slide 3: Mary -->
         <div class="slide">
             <div class="profile-wrapper">
-                <img src="Mary Student Profile.png" alt="Images of Mary" class="profile-img-wrap" style="float: right; margin-left: 25px; margin-bottom: 20px;" />
+                <img src="Mary.jpg" alt="Images of Mary" class="profile-img-wrap" />
                 <p>Mary is a <strong>dual language learner</strong>. Mary is socially engaged and interested in stories and songs. Progress monitoring data reveal that Mary:</p>
                 <ul>
                     <li>needs support understanding unfamiliar English vocabulary,</li>
@@ -345,10 +344,10 @@
             </div>
         </div>
 
-        <!-- Slide 4: Tyler (FLOAT LEFT) -->
+        <!-- Slide 4: Tyler -->
         <div class="slide">
             <div class="profile-wrapper">
-                <img src="Tyler Student Profile.png" alt="Images of Tyler" class="profile-img-wrap" style="float: left; margin-right: 25px; margin-bottom: 20px;" />
+                <img src="Tyler.jpg" alt="Images of Tyler" class="profile-img-wrap" />
                 <p>Tyler requires additional support to remain engaged during group literacy activities. Progress monitoring data reveal that Tyler:</p>
                 <ul>
                     <li>has difficulty sitting for long periods,</li>
@@ -364,10 +363,10 @@
             </div>
         </div>
 
-        <!-- Slide 5: Mateo (FLOAT RIGHT + GRID) -->
+        <!-- Slide 5: Mateo -->
         <div class="slide">
             <div class="profile-wrapper">
-                <img src="Mateo Student Profile.png" alt="Images of Mateo" class="profile-img-wrap" style="float: right; margin-left: 25px; margin-bottom: 20px;" />
+                <img src="Mateo.jpg" alt="Images of Mateo" class="profile-img-wrap" />
                 <p><strong>Name:</strong> Mateo | <strong>Age:</strong> 4 years, 8 months | <strong>Diagnosis:</strong> ASD with speech-language impairment.</p>
                 <p><strong>Present Level Summary:</strong> Mateo demonstrates interest in books, songs, and picture-based activities. He is able to attend to a preferred literacy task for several minutes when visuals and adult support are provided. He identifies familiar pictures and can answer simple questions by pointing or selecting from choices. Mateo’s expressive communication challenges and need for predictable structure affect his ability to participate independently in whole-group literacy activities. He benefits from individualized support including picture choices, visual schedules, repeated language, simplified directions, modeled responses, and alternative ways to demonstrate understanding.</p>
                 
